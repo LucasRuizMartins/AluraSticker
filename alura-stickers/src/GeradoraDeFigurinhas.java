@@ -16,7 +16,7 @@ public class GeradoraDeFigurinhas {
         // leitura img
         // InputStream input = new FileInputStream((new File("img/anya.jpg")));
       //  inputStream = new URL(inputStream).openStream();
-        BufferedImage imgOriginal = ImageIO.read(inputStream);
+      BufferedImage imgOriginal = ImageIO.read(inputStream);
         // criar nova img com transparencia e redimensionada
         int largura = imgOriginal.getWidth();
         int altura = imgOriginal.getHeight();
