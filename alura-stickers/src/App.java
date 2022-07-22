@@ -2,35 +2,33 @@ import java.io.InputStream;
 import java.net.URL;
 import java.util.List;
 
-
 public class App {
-    public static void main(String[] args) throws Exception {
+	public static void main(String[] args) throws Exception {
 
-        // Conexão HTTP com API imdb
-        String url = "https://raw.githubusercontent.com/alura-cursos/imersao-java/api/NASA-APOD.json";
+		// Conexão HTTP com API imdb
+	    String url = "https://api.mocki.io/v2/549a5d8b";
+        ExtratorDeConteudo extrator = new ExtratorDeConteudoDoIMDB();
+
         var http = new ClienteHttp();
         String json = http.buscaDados(url);
 
-        // exibir e manipular
-        //ExtratorDeConteudoDoIMDB extrator = new ExtratorDeConteudoDoIMDB();
-       ExtratorDeConteudo extrator = new extratorDeConteudoNasa();
-        List<Conteudo>  conteudos = extrator.extraiConteudos(json);
-       
-        var geradora = new GeradoraDeFigurinhas();
+        // exibir e manipular os dados 
+        List<Conteudo> conteudos = extrator.extraiConteudos(json);
 
-        for (int i = 0; i < 3 ; i ++) {
-            
-            Conteudo conteudo = conteudos.get(i);
+		var geradora = new GeradoraDeFigurinhas();
 
+		for (int i = 0; i < 3; i++) {
 
-            InputStream inputStream = new URL(conteudo.getUrlImagem()).openStream();
-            String nomeArquivo = "saida/" + conteudo.getTitulo() + ".png";
+			Conteudo conteudo = conteudos.get(i);
 
-            geradora.cria(inputStream, nomeArquivo);
+			InputStream inputStream = new URL(conteudo.getUrlImagem()).openStream();
+			String nomeArquivo = "saida/" + conteudo.getTitulo() + ".png";
 
-            System.out.println(conteudo.getTitulo());
+			geradora.cria(inputStream, nomeArquivo);
 
-            System.out.println();
-        }
-    }
+			System.out.println(conteudo.getTitulo());
+
+			System.out.println();
+		}
+	}
 }

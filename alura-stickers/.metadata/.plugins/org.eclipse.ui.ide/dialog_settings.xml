@@ -6,6 +6,8 @@
 		<item key="SmartImportRootWizardPage.STORE_NESTED_PROJECTS" value="true"/>
 		<item key="SmartImportRootWizardPage.STORE_CONFIGURE_NATURES" value="true"/>
 		<list key="org.eclipse.ui.internal.wizards.datatransfer.SmartImportRootWizardPage.knownSources">
+			<item value="C:\Users\deth_\OneDrive\Área de Trabalho\Programação\java\Alura\alura-stickers\src"/>
+			<item value="C:\Users\deth_\OneDrive\Área de Trabalho\Programação\java\imersao-java-aula3\alura-stickers"/>
 			<item value="C:\Users\deth_\OneDrive\Área de Trabalho\Programação\java\Alura\alura-stickers"/>
 		</list>
 	</section>

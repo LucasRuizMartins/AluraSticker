@@ -1,4 +1,5 @@
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
 
@@ -11,36 +12,35 @@ import javax.imageio.ImageIO;
 
 public class GeradoraDeFigurinhas {
 
-    public void cria(InputStream inputStream, String nomeArquivo) throws Exception {
+	   public void cria(InputStream inputStream, String nomeArquivo) throws Exception {
 
-        // leitura img
-        // InputStream input = new FileInputStream((new File("img/anya.jpg")));
-      //  inputStream = new URL(inputStream).openStream();
-      BufferedImage imgOriginal = ImageIO.read(inputStream);
-        // criar nova img com transparencia e redimensionada
-        int largura = imgOriginal.getWidth();
-        int altura = imgOriginal.getHeight();
-        int centroImg = imgOriginal.getWidth() / 3;
-        int novaAltura = altura + 200;
-        BufferedImage novaImagem = new BufferedImage(largura, novaAltura, BufferedImage.TRANSLUCENT); // usado para
-                                                                                                      // criar nova
-                                                                                                      // Imagem
+	        // ler imagem
+	    
 
-        // copiar a img original p/ nova img {memória}
+	        BufferedImage imagemOriginal = ImageIO.read(inputStream);
 
-        Graphics graphics = (Graphics) novaImagem.getGraphics();
-        graphics.drawImage(imgOriginal, 0, 0, null);
+	        // criar transparência e alterar tamanho  
+	        int largura = imagemOriginal.getWidth();
+	        int altura = imagemOriginal.getHeight();
+	        int novaAltura = altura + 200;
+	        BufferedImage novaImagem = new BufferedImage(largura, novaAltura, BufferedImage.TRANSLUCENT);
 
-        // configurar font
-        var fonte = new Font(Font.SANS_SERIF, Font.BOLD, 128);
-        graphics.setColor(Color.yellow);
-        graphics.setFont(fonte);
-        // escrever frase
+	        // copiar a imagem original pra novo imagem (em memória)
+	        Graphics2D graphics = (Graphics2D) novaImagem.getGraphics();
+	        graphics.drawImage(imagemOriginal, 0, 0, null);
 
-        graphics.drawString("Olar", centroImg, novaAltura - 100);
+	        // configurar a fonte
+	        var fonte = new Font(Font.SANS_SERIF, Font.BOLD, 120);
+	        graphics.setColor(Color.YELLOW);
+	        graphics.setFont(fonte);
 
-        // salvar como arquivo
-        ImageIO.write(novaImagem, "png", new File(nomeArquivo));
-    }
+	        // escrever uma frase na nova imagem
+	        graphics.drawString("Olar", imagemOriginal.getWidth()/3, novaAltura - 100);
 
-}
+	        // escrever a nova imagem em um arquivo
+	        ImageIO.write(novaImagem, "png", new File(nomeArquivo));
+
+	    }
+
+	}
+ 
